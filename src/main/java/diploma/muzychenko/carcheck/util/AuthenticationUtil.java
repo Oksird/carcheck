@@ -1,0 +1,11 @@
+package diploma.muzychenko.carcheck.util;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+public class AuthenticationUtil {
+    public static boolean isAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication != null && authentication.isAuthenticated();
+    }
+}

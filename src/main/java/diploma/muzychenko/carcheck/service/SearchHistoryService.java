@@ -4,7 +4,7 @@ import diploma.muzychenko.carcheck.domain.SearchHistory;
 import diploma.muzychenko.carcheck.domain.User;
 import diploma.muzychenko.carcheck.model.SearchHistoryDto;
 import diploma.muzychenko.carcheck.repository.SearchHistoryRepository;
-import diploma.muzychenko.carcheck.repository.UserRepository;
+
 import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
