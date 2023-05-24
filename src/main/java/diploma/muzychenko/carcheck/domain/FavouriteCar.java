@@ -1,7 +1,5 @@
 package diploma.muzychenko.carcheck.domain;
 
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,30 +12,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-import java.time.LocalDateTime;
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "search_history")
-public class SearchHistory {
+@Table(name = "favourite_cars")
+public class FavouriteCar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "car_id")
+    private Car car;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
-    @Column(name = "search_term")
-    private String searchTerm;
-
-    @Column(name = "search_date")
-    private LocalDateTime searchDate;
-
-    @Column(name = "search_query")
-    private String searchQuery;
 }
-

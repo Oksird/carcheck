@@ -1,30 +1,37 @@
 package diploma.muzychenko.carcheck.domain;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.Data;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "car_check_results")
 public class CarCheckResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String vin;
-    private String make;
-    private String model;
-    private Integer year;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "car_id")
+    private Car car;
 
-    @OneToMany(mappedBy = "carCheckResult", cascade = CascadeType.ALL)
-    private List<Fine> fines;
+    @Column(name = "check_date")
+    private LocalDateTime checkDate;
 
-    // Додаткові поля, конструктори, гетери, сетери та інші методи
-    // ...
+    @Column(name = "result")
+    private String result;
 }
